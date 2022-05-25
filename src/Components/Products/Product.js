@@ -1,7 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Product.css';
 const Product = ({ product }) => {
-    const { Name, image, price, QuantityAvailable } = product;
+    const { _id, Name, image, price, QuantityAvailable } = product;
+    const navigate = useNavigate();
+    const navigateWatchDetails = _id => {
+        navigate(`/purchase/${_id}`);
+    }
     return (
         <div class="card w-96 bg-base-100 shadow-2xl ">
             <figure className="hover-rotate"><img className="h-48" src={ image } alt="Shoes" /></figure>

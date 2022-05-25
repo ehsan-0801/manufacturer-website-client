@@ -12,6 +12,7 @@ import Footer from './Components/Footer/Footer';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './firebase.init';
 import Dashboard from './Components/Dashboard/Dashboard';
+import NotFound from './Components/Pages/NotFound';
 
 function App() {
   const [user] = useAuthState(auth);
@@ -28,6 +29,7 @@ function App() {
         <Route path="/portfolio" element={ <Portfolio></Portfolio> }></Route>
         <Route path="/signin" element={ <SignIn></SignIn> }></Route>
         <Route path="/signup" element={ <SignUp></SignUp> }></Route>
+        <Route path="*" element={ <NotFound></NotFound> }></Route>
       </Routes>
       <Footer></Footer>
     </div>
