@@ -13,7 +13,9 @@ const Dashboard = () => {
                 <input id="dashboard-sidebar" type="checkbox" class="drawer-toggle" />
                 <div class="drawer-content">
                     <h2 className='text-2xl font-bold text-blue-800'>{ admin ? 'admin' : 'user' }</h2>
+                    <label for="dashboard-sidebar" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
                     <Outlet></Outlet>
+
                 </div>
                 <div class="drawer-side">
                     <label htmlFor="my-drawer-2" class="drawer-overlay"></label>
