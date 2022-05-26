@@ -4,7 +4,7 @@ import './Product.css';
 const Product = ({ product }) => {
     const { _id, Name, image, price, QuantityAvailable } = product;
     const navigate = useNavigate();
-    const navigateWatchDetails = _id => {
+    const navigateProductDetails = _id => {
         navigate(`/purchase/${_id}`);
     }
     return (
@@ -15,7 +15,7 @@ const Product = ({ product }) => {
                 <p>{ price } BDT.</p>
                 <p><small>Available: { QuantityAvailable }</small></p>
                 <div class="card-actions justify-end">
-                    <button class="btn btn-primary btn-outline">Purchase</button>
+                    <button onClick={ () => navigateProductDetails(_id) } class="btn btn-primary btn-outline">Purchase</button>
                 </div>
             </div>
         </div>

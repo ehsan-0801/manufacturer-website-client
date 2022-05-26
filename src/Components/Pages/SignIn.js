@@ -5,6 +5,7 @@ import auth from '../../firebase.init';
 import Loading from './Loading';
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from 'react-toastify';
+import useToken from '../../Hooks/useToken';
 const SignIn = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
@@ -20,28 +21,32 @@ const SignIn = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-
-    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(
+    const [token] = useToken(user || gUser);
+    const [sendPasswordResetEmail, sending, error1] = useSendPasswordResetEmail(
         auth
     );
+
+
     let signInError;
     const navigate = useNavigate();
     const location = useLocation();
-    if (gUser || user) {
-        navigate('/dashboard');
-    }
+    let from = location.state?.from?.pathname || "/";
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate])
 
-    if (gLoading) {
+    if (gLoading || loading) {
         return <Loading></Loading>
     }
-    if (error || gError) {
-        signInError = <p className='text-red-500 shadow-2xl'><small>{ gError?.message }</small></p>
+    if (error || gError || error1) {
+        signInError = <p className='text-red-500 shadow-2xl'><small>{ gError?.message } { error?.message } { error1?.message }</small></p>
     }
-
-    let from = location.state?.from?.pathname || "/";
 
     const resetPassword = async () => {
         const email = emailRef.current.value;
+        console.log(email)
         if (email) {
             await sendPasswordResetEmail(email);
             toast('Email has been sent');
@@ -68,7 +73,7 @@ const SignIn = () => {
                                 <label class="label">
                                     <span class="label-text">Email</span>
                                 </label>
-                                <input ref={ emailRef } type="text" placeholder="email" class="input input-bordered"
+                                <input ref={ emailRef } type="email" placeholder="email" class="input input-bordered"
                                     { ...register("email", {
                                         required: {
                                             value: true,
@@ -106,7 +111,7 @@ const SignIn = () => {
                                     { errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{ errors.password.message }</span> }
                                 </label>
                                 <label class="label">
-                                    <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
+                                    <button onClick={ resetPassword } class="label-text-alt link link-hover">Forgot Password? Reset Here</button>
                                 </label>
                             </div>
                             <div class="form-control mt-6">
