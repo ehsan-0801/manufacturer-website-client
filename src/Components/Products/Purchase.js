@@ -7,11 +7,11 @@ import { toast, ToastContainer } from 'react-toastify';
 
 const Purchase = () => {
     const [user] = useAuthState(auth);
-    console.log(user);
+    // console.log(user);
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const [active, setActive] = useState(false)
-    const { register, handleSubmit, htmlFormState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     useEffect(() => {
         const url = `http://localhost:5000/products/${id}`;
@@ -34,7 +34,7 @@ const Purchase = () => {
         const OrderQuantity = parseInt(event.target.orderQuantity.value);
         const Address = event.target.Address.value;
         const Phone = event.target.Phone.value;
-        const InhtmlFormation = event.target.Information.value;
+        const Information = event.target.Information.value;
         let newOrder = {
             userName: name,
             userEmail: email,
@@ -43,7 +43,7 @@ const Purchase = () => {
             OrderQuantity,
             Address,
             Phone,
-            InhtmlFormation
+            Information
         }
         console.log(newOrder);
         // const url = ;
@@ -97,7 +97,7 @@ const Purchase = () => {
                         <div className="border border-primary">
                             <h1 className="text-xl text-center"> <span className="text-primary font-bold"> Name: </span>{ user.displayName }</h1>
                             <h1 className="text-xl text-center"><span className="text-primary font-bold"> Email: </span>{ user.email }</h1>
-                            <htmlForm onChange={ handleSubmit(onChange) } onSubmit={ handleOrder }>
+                            <form onChange={ handleSubmit(onChange) } onSubmit={ handleOrder }>
 
                                 <div>
 
@@ -161,16 +161,16 @@ const Purchase = () => {
                                 <div>
                                     <div className="flex gap-1 mb-4">
                                         <label className="label">
-                                            <span className="label-text">InhtmlFormation</span>
+                                            <span className="label-text">Information</span>
                                         </label>
-                                        <textarea className="textarea textarea-bordered lg:w-full" placeholder="additional requirements" { ...register("InhtmlFormation", {
+                                        <textarea className="textarea textarea-bordered lg:w-full" placeholder="additional requirements" { ...register("Information", {
                                         }) }></textarea>
                                     </div>
                                 </div>
                                 <div>
                                     <button className="btn btn-primary" disabled={ errors.orderQuantity?.type === 'min' || errors.orderQuantity?.type === 'max' }>Order</button>
                                 </div>
-                            </htmlForm>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -1,9 +1,15 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const Searchbar = () => {
-    const [user] = useAuthState(auth)
+    const [user] = useAuthState(auth);
+
+    const handleSignOut = () => {
+        signOut(auth);
+    }
     return (
         <div className="navbar bg-base-100 lg:px-24">
             <div className="">
@@ -23,13 +29,12 @@ const Searchbar = () => {
                 </label>
                 <ul tabIndex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                     <li>
-                        <a className="justify-between">
-                            Profile
-                            <span className="badge">New</span>
-                        </a>
+                        <Link to="dashboard" className="justify-between">
+                            My Profile
+                        </Link>
                     </li>
                     <li><a>Settings</a></li>
-                    <li><a>Logout</a></li>
+                    <li><Link onClick={ handleSignOut } to="/">SIGN OUT</Link></li>
                 </ul>
             </div> }
         </div>
