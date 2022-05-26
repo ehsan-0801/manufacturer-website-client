@@ -10,7 +10,7 @@ const MyProfile = () => {
         <div>
             <h1>Name:{ user.displayName }</h1>
             <h1>Email:{ user.email }</h1>
-            <label for="profileUpdate-modal" class="btn btn-outline btn-primary modal-button" onClick={ () => setModal() }>Update Info</label>
+            <label htmlFor="profileUpdate-modal" class="btn btn-outline btn-primary modal-button" onClick={ () => setModal() }>Update Info</label>
             { <UpdateModal
                 key={ user.uid }
                 user={ user }

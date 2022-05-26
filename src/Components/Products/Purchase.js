@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import { useParams } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
@@ -11,7 +11,7 @@ const Purchase = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const [active, setActive] = useState(false)
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, htmlFormState: { errors } } = useForm();
 
     useEffect(() => {
         const url = `http://localhost:5000/products/${id}`;
@@ -34,7 +34,7 @@ const Purchase = () => {
         const OrderQuantity = parseInt(event.target.orderQuantity.value);
         const Address = event.target.Address.value;
         const Phone = event.target.Phone.value;
-        const Information = event.target.Information.value;
+        const InhtmlFormation = event.target.Information.value;
         let newOrder = {
             userName: name,
             userEmail: email,
@@ -43,7 +43,7 @@ const Purchase = () => {
             OrderQuantity,
             Address,
             Phone,
-            Information
+            InhtmlFormation
         }
         console.log(newOrder);
         // const url = ;
@@ -97,7 +97,7 @@ const Purchase = () => {
                         <div className="border border-primary">
                             <h1 className="text-xl text-center"> <span className="text-primary font-bold"> Name: </span>{ user.displayName }</h1>
                             <h1 className="text-xl text-center"><span className="text-primary font-bold"> Email: </span>{ user.email }</h1>
-                            <form onChange={ handleSubmit(onChange) } onSubmit={ handleOrder }>
+                            <htmlForm onChange={ handleSubmit(onChange) } onSubmit={ handleOrder }>
 
                                 <div>
 
@@ -127,7 +127,7 @@ const Purchase = () => {
                                         <label className="label">
                                             <span className="label-text">Address</span>
                                         </label>
-                                        <input type="text" placeholder="Address of Shipment" class="input input-bordered"
+                                        <input type="text" placeholder="Address of Shipment" className="input input-bordered"
                                             { ...register("Address", {
                                                 required: {
                                                     value: true,
@@ -145,11 +145,11 @@ const Purchase = () => {
                                         <label className="label">
                                             <span className="label-text">Phone</span>
                                         </label>
-                                        <input type="text" placeholder="Phone Number" class="input input-bordered"
+                                        <input type="text" placeholder="Phone Number" className="input input-bordered"
                                             { ...register("Phone", {
                                                 required: {
                                                     value: true,
-                                                    message: 'Please input a Phone number for contact'
+                                                    message: 'Please input a Phone number htmlFor contact'
                                                 },
                                             }) }
                                         />
@@ -161,16 +161,16 @@ const Purchase = () => {
                                 <div>
                                     <div className="flex gap-1 mb-4">
                                         <label className="label">
-                                            <span className="label-text">Information</span>
+                                            <span className="label-text">InhtmlFormation</span>
                                         </label>
-                                        <textarea class="textarea textarea-bordered lg:w-full" placeholder="additional requirements" { ...register("Information", {
+                                        <textarea className="textarea textarea-bordered lg:w-full" placeholder="additional requirements" { ...register("InhtmlFormation", {
                                         }) }></textarea>
                                     </div>
                                 </div>
                                 <div>
                                     <button className="btn btn-primary" disabled={ errors.orderQuantity?.type === 'min' || errors.orderQuantity?.type === 'max' }>Order</button>
                                 </div>
-                            </form>
+                            </htmlForm>
                         </div>
                     </div>
                 </div>

@@ -46,15 +46,15 @@ const UpdateModal = ({ user }) => {
             <input type="checkbox" id="profileUpdate-modal" class="modal-toggle" />
             <div class="modal">
                 <div class="modal-box relative">
-                    <label for="profileUpdate-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 className="font-bold text-lg text-secondary text-center">Updating For: { user.displayName }</h3>
-                    <form onSubmit={ UpdateProfile } className='grid grid-cols-1 gap-3 justify-items-center mt-2'>
+                    <label htmlFor="profileUpdate-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <h3 className="font-bold text-lg text-secondary text-center">Updating htmlFor: { user.displayName }</h3>
+                    <htmlForm onSubmit={ UpdateProfile } className='grid grid-cols-1 gap-3 justify-items-center mt-2'>
                         <input type="text" name="Education" placeholder="Education" className="input input-bordered w-full max-w-xs" />
                         <input type="text" name="location" placeholder="location (city/district)" className="input input-bordered w-full max-w-xs" />
                         <input type="text" name="LinkedIn" placeholder="LinkedIn profile link" className="input input-bordered w-full max-w-xs" />
                         <input type="text" name="phone" placeholder="Phone Number" className="input input-bordered w-full max-w-xs" />
                         <input type="submit" value="Submit" className="btn btn-secondary w-full max-w-xs" />
-                    </form>
+                    </htmlForm>
                 </div>
             </div>
         </div>

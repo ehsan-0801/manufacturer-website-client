@@ -27,7 +27,7 @@ const Banner = () => {
                             data-aos-delay="400"
                             data-aos-duration="1200"
                             className="py-6">
-                            E-tools is a manufacturing platform of Electrical tools. We have everything that you need for working. We sell the best quality that will find in the market.
+                            E-tools is a manufacturing plathtmlForm of Electrical tools. We have everything that you need htmlFor working. We sell the best quality that will find in the market.
                         </p>
                     </div>
                 </div>
