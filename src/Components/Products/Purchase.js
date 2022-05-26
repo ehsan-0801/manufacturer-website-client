@@ -32,18 +32,22 @@ const Purchase = () => {
         const email = user.email;
         const productName = product.Name;
         const OrderQuantity = parseInt(event.target.orderQuantity.value);
+        const TotalPrice = parseInt(event.target.orderQuantity.value) * parseInt(product.price);
         const Address = event.target.Address.value;
         const Phone = event.target.Phone.value;
         const Information = event.target.Information.value;
+        const status = 'pending'
         let newOrder = {
             userName: name,
             userEmail: email,
             userId: uid,
             productName,
             OrderQuantity,
+            TotalPrice,
             Address,
             Phone,
-            Information
+            Information,
+            status
         }
         console.log(newOrder);
         // const url = ;
@@ -58,6 +62,7 @@ const Purchase = () => {
             .then(data => {
                 if (data.success) {
                     toast(`Order Placed successfully`)
+                    event.target.reset()
                 }
                 else {
                     toast.error(`There is a error in input`)

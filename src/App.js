@@ -21,8 +21,9 @@ import MyProfile from './Components/Products/MyProfile';
 import RequireAdmin from './Components/Required/RequreAdmin';
 import ManageAllOrders from './Components/AdminTask/ManageAllOrders';
 import AddProducts from './Components/AdminTask/AddProducts';
-import MakeAdmin from './Components/AdminTask/MakeAdmin';
 import ManageProducts from './Components/AdminTask/ManageProducts';
+import Users from './Components/AdminTask/Users';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [user] = useAuthState(auth);
@@ -31,6 +32,7 @@ function App() {
   })
   return (
     <div className="App">
+      <ToastContainer></ToastContainer>
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={ <Home></Home> }></Route>
@@ -50,7 +52,7 @@ function App() {
           <Route path="addreview" element={ <AddReview></AddReview> }></Route>
           <Route path="manageallorders" element={ <RequireAdmin><ManageAllOrders></ManageAllOrders></RequireAdmin> }></Route>
           <Route path="addproducts" element={ <RequireAdmin><AddProducts></AddProducts></RequireAdmin> }></Route>
-          <Route path="makeadmin" element={ <RequireAdmin><MakeAdmin></MakeAdmin></RequireAdmin> }></Route>
+          <Route path="users" element={ <RequireAdmin><Users></Users></RequireAdmin> }></Route>
           <Route path="manageproducts" element={ <RequireAdmin><ManageProducts></ManageProducts></RequireAdmin> }></Route>
         </Route>
         <Route path="*" element={ <NotFound></NotFound> }></Route>

@@ -22,7 +22,7 @@ const Navbar = () => {
                 <li><Link onClick={ handleSignOut } to="/">SIGN OUT</Link></li>
                 :
                 <li><NavLink to="/signin">SIGNIN</NavLink></li> }
-        <li><NavLink to="/signup">SIGNUP</NavLink></li>
+        { !user && <li><NavLink to="/signup">SIGNUP</NavLink></li> }
     </>
     return (
         <div>

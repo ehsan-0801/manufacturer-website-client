@@ -22,7 +22,7 @@ const Products = () => {
                         key={ product._id }
                         product={ product }
                     // setTreatment={ setTreatment }
-                    ></Product>).slice(0, 6)
+                    ></Product>).reverse().slice(0, 6)
                 }
             </div>
             {/* { treatment && <BookingModal

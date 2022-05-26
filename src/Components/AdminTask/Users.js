@@ -1,10 +1,10 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Pages/Loading';
-import OrdersRow from './OrdersRow';
+import UserRow from './UserRow';
 
-const ManageAllOrders = () => {
-    const { data: AllOrders, isLoading, refetch } = useQuery('orders', () => fetch('http://localhost:5000/allorder', {
+const Users = () => {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/users', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -15,25 +15,23 @@ const ManageAllOrders = () => {
     }
     return (
         <div>
-            <h2 className="text-2xl">All Orders: { AllOrders.length }</h2>
+            <h2 className="text-2xl">All Users: { users.length }</h2>
             <div class="overflow-x-auto">
                 <table class="table w-full">
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Email</th>
-                            <th>Product Name</th>
-                            <th>Order Quantity</th>
-                            <th>Total Price</th>
+                            <th>Job</th>
+                            <th>Favorite Color</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            AllOrders.map((order, index) => <OrdersRow
-                                key={ order._id }
-                                order={ order }
+                            users.map(user => <UserRow
+                                key={ user._id }
+                                user={ user }
                                 refetch={ refetch }
-                            ></OrdersRow>)
+                            ></UserRow>)
                         }
                     </tbody>
                 </table>
@@ -42,4 +40,4 @@ const ManageAllOrders = () => {
     );
 };
 
-export default ManageAllOrders;
+export default Users;
