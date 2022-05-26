@@ -18,6 +18,8 @@ import Purchase from './Components/Products/Purchase';
 import MyOrders from './Components/Products/MyOrders';
 import AddReview from './Components/Products/AddReview';
 import MyProfile from './Components/Products/MyProfile';
+import RequireAdmin from './Components/Required/RequreAdmin';
+import ManageAllOrders from './Components/AdminTask/ManageAllOrders';
 
 function App() {
   const [user] = useAuthState(auth);
@@ -43,6 +45,7 @@ function App() {
           <Route index element={ <MyProfile></MyProfile> }></Route>
           <Route path="myorders" element={ <MyOrders></MyOrders> }></Route>
           <Route path="addreview" element={ <AddReview></AddReview> }></Route>
+          <Route path="manageallorders" element={ <RequireAdmin><ManageAllOrders></ManageAllOrders></RequireAdmin> }></Route>
         </Route>
         <Route path="*" element={ <NotFound></NotFound> }></Route>
       </Routes>

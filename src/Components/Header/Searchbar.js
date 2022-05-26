@@ -17,7 +17,7 @@ const Searchbar = () => {
             </div>
             <div className="flex-initial mx-auto">
                 <div className="w-full">
-                    <input type="text" placeholder="Search" className="input input-bordered" />
+                    {/* <input type="text" placeholder="Search" className="input input-bordered" /> */ }
                 </div>
 
             </div>
