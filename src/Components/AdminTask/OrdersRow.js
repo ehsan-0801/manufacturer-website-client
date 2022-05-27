@@ -11,6 +11,7 @@ const OrdersRow = ({ order }) => {
             <td>{ order.productName }</td>
             <td>{ order.OrderQuantity }</td>
             <td>{ order.TotalPrice }</td>
+            <td>{ order.status }</td>
             {/* <td>{ role !== 'admin' && <button onClick={ makeAdmin } class="btn btn-xs">Make Admin</button> }</td> */ }
             {/* <td><button class="btn btn-xs">Remove User</button></td> */ }
         </tr>

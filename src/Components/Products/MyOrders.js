@@ -87,14 +87,15 @@ const MyOrders = () => {
                                 </td>
 
                                 <td>
-                                    <button className='btn btn-xs btn-accent'>pay</button>
-                                </td>
-                                {/* <td>
-                                    { (order.price && !order.paid) && <Link to={ `/dashboard/payment/${order._id}` }><button className='btn btn-xs btn-success'>pay</button></Link> }
-                                    { (order.price && order.paid) && <div>
+                                    { (order.TotalPrice && order.status == "unpaid") && <Link to={ `/dashboard/payment/${order._id}` }><button className='btn btn-xs btn-accent'>pay</button></Link> }
+                                    { (order.TotalPrice && order.status == "Pending") && <div>
                                         <p><span className='text-success'>Paid</span></p>
                                         <p>Transaction id: <span className='text-success'>{ order.transactionId }</span></p>
                                     </div> }
+                                </td>
+                                {/* <td>
+                                    
+                                    
                                 </td> */}
                             </tr>)
                         }

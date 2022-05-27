@@ -25,6 +25,7 @@ const ManageAllOrders = () => {
                             <th>Product Name</th>
                             <th>Order Quantity</th>
                             <th>Total Price</th>
+                            <th>Order Status</th>
                         </tr>
                     </thead>
                     <tbody>

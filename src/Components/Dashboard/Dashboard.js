@@ -11,7 +11,7 @@ const Dashboard = () => {
         <div>
             <div class="drawer drawer-mobile">
                 <input id="dashboard-sidebar" type="checkbox" class="drawer-toggle" />
-                <div class="drawer-content">
+                <div class="drawer-content mx-3">
                     <h2 className='text-2xl font-bold text-blue-800'>{ admin ? 'admin' : 'user' }</h2>
                     <label for="dashboard-sidebar" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
                     <Outlet></Outlet>
@@ -19,7 +19,7 @@ const Dashboard = () => {
                 </div>
                 <div class="drawer-side">
                     <label htmlFor="my-drawer-2" class="drawer-overlay"></label>
-                    <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+                    <ul class="menu p-4 overflow-y-auto w-80 bg-accent text-base-content">
                         <li><Link to="/dashboard">My Profile</Link></li>
                         { user && !admin && <>
                             <li><Link to="/dashboard/myorders">My Orders</Link></li>

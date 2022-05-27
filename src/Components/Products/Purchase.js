@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { toast, ToastContainer } from 'react-toastify';
@@ -12,7 +12,7 @@ const Purchase = () => {
     const [product, setProduct] = useState({});
     const [active, setActive] = useState(false)
     const { register, handleSubmit, formState: { errors } } = useForm();
-
+    const navigate = useNavigate();
     useEffect(() => {
         const url = `http://localhost:5000/products/${id}`;
         // console.log(url);
@@ -36,7 +36,7 @@ const Purchase = () => {
         const Address = event.target.Address.value;
         const Phone = event.target.Phone.value;
         const Information = event.target.Information.value;
-        const status = 'pending'
+        const status = 'unpaid'
         let newOrder = {
             userName: name,
             userEmail: email,
@@ -62,6 +62,7 @@ const Purchase = () => {
             .then(data => {
                 if (data.success) {
                     toast(`Order Placed successfully`)
+                    navigate(`/dashboard/myorders`);
                     event.target.reset()
                 }
                 else {

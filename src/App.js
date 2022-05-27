@@ -24,6 +24,7 @@ import AddProducts from './Components/AdminTask/AddProducts';
 import ManageProducts from './Components/AdminTask/ManageProducts';
 import Users from './Components/AdminTask/Users';
 import { ToastContainer } from 'react-toastify';
+import Payment from './Components/Products/Payment';
 
 function App() {
   const [user] = useAuthState(auth);
@@ -50,6 +51,7 @@ function App() {
           <Route index element={ <MyProfile></MyProfile> }></Route>
           <Route path="myorders" element={ <MyOrders></MyOrders> }></Route>
           <Route path="addreview" element={ <AddReview></AddReview> }></Route>
+          <Route path="payment/:id" element={ <Payment></Payment> }></Route>
           <Route path="manageallorders" element={ <RequireAdmin><ManageAllOrders></ManageAllOrders></RequireAdmin> }></Route>
           <Route path="addproducts" element={ <RequireAdmin><AddProducts></AddProducts></RequireAdmin> }></Route>
           <Route path="users" element={ <RequireAdmin><Users></Users></RequireAdmin> }></Route>
