@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 import Loading from '../Pages/Loading';
 
 const OrdersRow = ({ order }) => {
-    let count = 0
+    const [complete, setComplete] = useState(false);
+    const orderShipment = () => {
+        fetch(`http://localhost:5000/order/${order._id}`, {
+            method: 'PATCH',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 403) {
+                    toast.error('Shipping Failed');
+                }
+                return res.json()
+            })
+            .then(data => {
+                if (data) {
+                    toast.success(`Order Shipped`);
+                }
+
+            })
+    }
     return (
         <tr>
             <td>{ order.userName }</td>
@@ -12,8 +33,9 @@ const OrdersRow = ({ order }) => {
             <td>{ order.OrderQuantity }</td>
             <td>{ order.TotalPrice }</td>
             <td>{ order.status }</td>
-            {/* <td>{ role !== 'admin' && <button onClick={ makeAdmin } class="btn btn-xs">Make Admin</button> }</td> */ }
-            {/* <td><button class="btn btn-xs">Remove User</button></td> */ }
+            <td>
+                { order.status !== "Shipped" && <button onClick={ orderShipment } className='btn btn-xs btn-primary'>Shipment</button> }
+            </td>
         </tr>
     );
 };

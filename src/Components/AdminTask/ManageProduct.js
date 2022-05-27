@@ -15,7 +15,7 @@ const ManageProduct = ({ product }) => {
                 <p>{ price } BDT.</p>
                 <p><small>Available: { QuantityAvailable }</small></p>
                 <div class="card-actions justify-start">
-                    <button onClick={ () => navigateProductDetails(_id) } class="btn btn-primary btn-outline">Purchase</button>
+                    <button class="btn btn-primary btn-outline">DELETE</button>
                 </div>
             </div>
         </div>
