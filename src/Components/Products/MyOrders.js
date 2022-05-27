@@ -2,12 +2,35 @@ import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import OrderCancelModal from './OrderCancelModal';
 
 const MyOrders = () => {
+    const [modal, setModal] = useState(null)
     const [orders, setOrders] = useState([]);
     const [user] = useAuthState(auth);
     const navigate = useNavigate()
+    const handleDelete = (id) => {
+        const proceed = window.confirm("Are You sure?")
+        if (proceed) {
+            fetch(`http://localhost:5000/order/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount) {
+                        toast.success(`deleted.`)
+                        const remaining = orders.filter(order => order._id !== id);
+                        setOrders(remaining)
+                    }
+                })
+        }
+    }
 
     useEffect(() => {
         if (user) {
@@ -18,7 +41,7 @@ const MyOrders = () => {
                 }
             })
                 .then(res => {
-                    console.log('res', res);
+                    // console.log('res', res);
                     if (res.status === 401 || res.status === 403) {
                         signOut(auth);
                         localStorage.removeItem('accessToken');
@@ -43,6 +66,7 @@ const MyOrders = () => {
                             <th></th>
                             <th>Ordered Item</th>
                             <th>Ordered Quantity</th>
+                            <th>Total Price</th>
                             <th>Adress</th>
                             <th>Phone Number</th>
                             <th colSpan="2">Action</th>
@@ -54,11 +78,14 @@ const MyOrders = () => {
                                 <th>{ index + 1 }</th>
                                 <td>{ order.productName }</td>
                                 <td>{ order.OrderQuantity }</td>
+                                <td>{ order.TotalPrice }</td>
                                 <td>{ order.Address }</td>
                                 <td>{ order.Phone }</td>
                                 <td>
-                                    <button className='btn btn-xs btn-primary'>Cancel</button>
+                                    <label htmlFor="orderCancelModal" class="btn btn-xs btn-primary modal-button" onClick={ () => handleDelete(order._id) }>Cancel</label>
+
                                 </td>
+
                                 <td>
                                     <button className='btn btn-xs btn-accent'>pay</button>
                                 </td>
@@ -76,6 +103,7 @@ const MyOrders = () => {
                     </tbody>
                 </table>
             </div>
+
         </div>
     );
 };

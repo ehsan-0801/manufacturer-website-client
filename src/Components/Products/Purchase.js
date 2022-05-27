@@ -22,7 +22,7 @@ const Purchase = () => {
 
     }, []);
     const onChange = data => {
-
+        console.log(data);
     }
     const handleOrder = (event) => {
         event.preventDefault();
@@ -102,7 +102,7 @@ const Purchase = () => {
                         <div className="border border-primary">
                             <h1 className="text-xl text-center"> <span className="text-primary font-bold"> Name: </span>{ user.displayName }</h1>
                             <h1 className="text-xl text-center"><span className="text-primary font-bold"> Email: </span>{ user.email }</h1>
-                            <form onChange={ handleSubmit(onChange) } onSubmit={ handleOrder }>
+                            <form onChange={ handleSubmit(onChange) } onSubmit={ (handleOrder) }>
 
                                 <div>
 
