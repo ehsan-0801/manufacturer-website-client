@@ -4,7 +4,7 @@ import Loading from '../Pages/Loading';
 import OrdersRow from './OrdersRow';
 
 const ManageAllOrders = () => {
-    const { data: AllOrders, isLoading, refetch } = useQuery('orders', () => fetch('http://localhost:5000/allorder', {
+    const { data: AllOrders, isLoading, refetch } = useQuery('orders', () => fetch('https://infinite-springs-06892.herokuapp.com/allorder', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

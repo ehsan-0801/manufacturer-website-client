@@ -14,7 +14,7 @@ const Purchase = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
     useEffect(() => {
-        const url = `http://localhost:5000/products/${id}`;
+        const url = `https://infinite-springs-06892.herokuapp.com/products/${id}`;
         // console.log(url);
         fetch(url)
             .then(res => res.json())
@@ -51,7 +51,7 @@ const Purchase = () => {
         }
         console.log(newOrder);
         // const url = ;
-        fetch('http://localhost:5000/orders', {
+        fetch('https://infinite-springs-06892.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

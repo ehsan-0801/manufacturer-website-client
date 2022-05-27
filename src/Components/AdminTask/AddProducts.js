@@ -5,7 +5,7 @@ const AddProducts = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const onSubmit = async data => {
         console.log(data);
-        const url = `http://localhost:5000/products`;
+        const url = `https://infinite-springs-06892.herokuapp.com/products`;
         fetch(url, {
             method: 'POST',
             headers: {

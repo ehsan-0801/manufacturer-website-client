@@ -5,7 +5,7 @@ import DeletingConfirmModal from './DeletingConfirmModal';
 import ManageProduct from './ManageProduct';
 const ManageProducts = () => {
     const [deletingProduct, setDeletingProduct] = useState(null);
-    const { data: products, isLoading, refetch } = useQuery(['products'], () => fetch(`http://localhost:5000/products`)
+    const { data: products, isLoading, refetch } = useQuery(['products'], () => fetch(`https://infinite-springs-06892.herokuapp.com/products`)
         .then(res => res.json()))
     if (isLoading) {
         return <Loading></Loading>

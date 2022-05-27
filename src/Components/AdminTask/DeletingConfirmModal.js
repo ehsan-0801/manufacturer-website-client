@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 const DeletingConfirmModal = ({ deletingProduct, refetch, setDeletingProduct }) => {
     const { Name, _id } = deletingProduct;
     const handleDelete = () => {
-        fetch(`http://localhost:5000/product/${_id}`, {
+        fetch(`https://infinite-springs-06892.herokuapp.com/product/${_id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

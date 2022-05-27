@@ -14,7 +14,7 @@ const MyOrders = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm("Are You sure?")
         if (proceed) {
-            fetch(`http://localhost:5000/order/${id}`, {
+            fetch(`https://infinite-springs-06892.herokuapp.com/order/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -34,7 +34,7 @@ const MyOrders = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/orders?email=${user.email}`, {
+            fetch(`https://infinite-springs-06892.herokuapp.com/orders?email=${user.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`

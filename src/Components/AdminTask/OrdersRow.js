@@ -6,7 +6,7 @@ import Loading from '../Pages/Loading';
 const OrdersRow = ({ order }) => {
     const [complete, setComplete] = useState(false);
     const orderShipment = () => {
-        fetch(`http://localhost:5000/order/${order._id}`, {
+        fetch(`https://infinite-springs-06892.herokuapp.com/order/${order._id}`, {
             method: 'PATCH',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

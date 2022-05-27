@@ -10,7 +10,7 @@ import CheckoutForm from './CheckoutForm';
 const stripePromise = loadStripe('pk_test_51L46mRBfwq9zvEwhvzNxSjfDZJNwqCvGVbXo4Qco6JCRVxQ5WTWfUAYEXnNN6Pwr9IR6b09gxTlMuAiAg8V13pV500BPuOYu4e');
 const Payment = () => {
     const { id } = useParams();
-    const url = `http://localhost:5000/orders/${id}`
+    const url = `https://infinite-springs-06892.herokuapp.com/orders/${id}`
     const { data: order, isLoading } = useQuery(['order', id], () => fetch(url, {
         method: 'GET',
         headers: {

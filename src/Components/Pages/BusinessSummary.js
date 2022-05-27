@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import Loading from './Loading';
 
 const BusinessSummary = () => {
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/users', {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://infinite-springs-06892.herokuapp.com/users', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

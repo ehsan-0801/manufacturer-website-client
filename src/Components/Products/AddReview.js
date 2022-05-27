@@ -18,7 +18,7 @@ const AddReview = () => {
             name: user.displayName,
             userId: user.uid,
         }
-        fetch(`http://localhost:5000/review/${user.email}`, {
+        fetch(`https://infinite-springs-06892.herokuapp.com/review/${user.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

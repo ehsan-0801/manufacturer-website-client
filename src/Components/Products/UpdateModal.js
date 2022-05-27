@@ -21,7 +21,7 @@ const UpdateModal = ({ user }) => {
         }
         console.log(profile)
 
-        fetch(`http://localhost:5000/user/${email}`, {
+        fetch(`https://infinite-springs-06892.herokuapp.com/user/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
