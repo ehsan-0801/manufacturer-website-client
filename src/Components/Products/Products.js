@@ -25,12 +25,6 @@ const Products = () => {
                     ></Product>).reverse().slice(0, 6)
                 }
             </div>
-            {/* { treatment && <BookingModal
-                date={ date }
-                treatment={ treatment }
-                setTreatment={ setTreatment }
-                refetch={ refetch }
-            ></BookingModal> } */}
         </div>
     );
 };
