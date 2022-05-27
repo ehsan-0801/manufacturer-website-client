@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import DeletingConfirmModal from './DeletingConfirmModal';
 import './ManageProduct.css';
-const ManageProduct = ({ product }) => {
+const ManageProduct = ({ product, index, refetch, setDeletingProduct }) => {
     const { _id, Name, image, price, QuantityAvailable } = product;
-    const navigate = useNavigate();
-    const navigateProductDetails = _id => {
-        navigate(`/purchase/${_id}`);
-    }
     return (
         <div class="card w-52 bg-base-100 shadow-2xl ">
             <figure className="hover-rotate1"><img className="h-36" src={ image } alt="Shoes" /></figure>
@@ -15,10 +12,10 @@ const ManageProduct = ({ product }) => {
                 <p>{ price } BDT.</p>
                 <p><small>Available: { QuantityAvailable }</small></p>
                 <div class="card-actions justify-start">
-                    <button class="btn btn-primary btn-outline">DELETE</button>
+                    <label onClick={ () => setDeletingProduct(product) } for="delete-confirm-modal" class="btn btn-xs btn-error">Delete</label>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

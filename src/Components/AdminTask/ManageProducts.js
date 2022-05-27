@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Pages/Loading';
+import DeletingConfirmModal from './DeletingConfirmModal';
 import ManageProduct from './ManageProduct';
 const ManageProducts = () => {
+    const [deletingProduct, setDeletingProduct] = useState(null);
     const { data: products, isLoading, refetch } = useQuery(['products'], () => fetch(`http://localhost:5000/products`)
         .then(res => res.json()))
     if (isLoading) {
@@ -18,20 +20,21 @@ const ManageProducts = () => {
                     data-aos-duration="1200"
                     className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-6 lg:mx-24'>
                     {
-                        products.map(product => <ManageProduct
+                        products.map((product, index) => <ManageProduct
                             key={ product._id }
                             product={ product }
-                        // setTreatment={ setTreatment }
+                            index={ index }
+                            refetch={ refetch }
+                            setDeletingProduct={ setDeletingProduct }
                         ></ManageProduct>)
                     }
                 </div>
-                {/* { treatment && <BookingModal
-                date={ date }
-                treatment={ treatment }
-                setTreatment={ setTreatment }
-                refetch={ refetch }
-            ></BookingModal> } */}
             </div>
+            { deletingProduct && <DeletingConfirmModal
+                deletingProduct={ deletingProduct }
+                refetch={ refetch }
+                setDeletingProduct={ setDeletingProduct }
+            ></DeletingConfirmModal> }
         </div>
     );
 };
